@@ -1,0 +1,46 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+  task:
+    scheduling:
+      fixed-delay: 5000
+  zipkin:
+    base-url: http://localhost:9411/
+  sleuth:
+    sampler:
+      probability: 1
+logging:
+  level:
+    root: ERROR
+    org:
+      springframework:
+        web: ERROR
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n'
+  encoder:
+    pattern: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n'
+    class: net.logstash.logback.encoder.LogstashEncoder
+    customFields:
+      service: DSGS
+      environment: dev
+      host: ${HOSTNAME}
+  file:
+    name: ${LOG_PATH:./logs}/app.log
+
+mvn:
+  home:
+    windows: C:\Users\lenovo\Downloads\apache-maven-3.8.1
+    mac: /usr/local/Cellar/maven/3.9.0/libexec
+
+logstash:
+  host: 127.0.0.1
+  port: 5001
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: true
+    service-url:
+       defaultZone: http://localhost:8761/eureka/
+
